@@ -15,7 +15,8 @@ func main() {
     }
 
     // open conn
-    host := "localhost"
+    //host := "localhost"
+    host := "v101084124.sqa.zmf"
     port := "3333"
     conn, err := net.Dial("tcp", host + ":" +port)
     if err != nil {
@@ -25,7 +26,7 @@ func main() {
     fmt.Println("Connecting to " + host + ":" + port)
 
     // send
-    buf := make([]byte, 1024)
+    buf := make([]byte, 64*1024)
     inputReader := bufio.NewReader(inputFile)
     for {
         n, err := inputReader.Read(buf)
