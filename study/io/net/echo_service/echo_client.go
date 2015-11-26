@@ -1,22 +1,20 @@
 package main
 import (
-    "flag"
     "fmt"
     "net"
     "os"
     "strconv"
 )
-var host = flag.String("host", "localhost", "host")
-var port = flag.String("port", "3333", "port")
 func main() {
-    flag.Parse()
-    conn, err := net.Dial("tcp", *host+":"+*port)
+    host := "localhost"
+    port := "9999"
+    conn, err := net.Dial("tcp", host+":"+port)
     if err != nil {
         fmt.Println("Error connecting:", err)
         os.Exit(1)
     }
     defer conn.Close()
-    fmt.Println("Connecting to " + *host + ":" + *port)
+    fmt.Println("Connecting to " + host + ":" + port)
     done := make(chan string)
     go handleWrite(conn, done)
     go handleRead(conn, done)
